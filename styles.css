@@ -6,21 +6,64 @@
 
 .container {
   width: 100%;
-  height: 100vh;
-  background-color: #19747e;
+  height: 130vh;
+  background-image: url("/images/green-pine-trees-covered-with-fog.jpg");
 }
 .navbar {
   justify-content: space-between; /* Rozdziela logo i linki */
   align-items: center; /* Wyrównuje elementy w pionie */
-  background-color: #a9d6e5; /* Tło paska */
-  padding: 10px 20px; /* Odstępy */
+  /* background-color: #a9d6e5; Tło paska */
+  padding: 10px 0px; /* Odstępy */
+  background-color: black;
+  opacity: 0.3;
 }
-.navbar ul {
+.nav-links {
   display: inline-flex;
   margin: 30px;
 }
-.navbar ul li {
+.nav-links li {
   list-style: none;
   margin: 10px 60px;
-  color: #19747e;
+}
+.nav-links li a {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  padding: 5px;
+  transition: color 0.3 ease;
+}
+
+.nav-links li a:hover {
+  color: lightgreen;
+}
+.hero {
+  font-size: 25px;
+  height: 70vh; /* Wysokość na pełny ekran */
+  display: flex;
+  align-items: center; /* Wyrównanie zawartości w pionie */
+  justify-content: center;
+  flex-direction: column;
+  color: rgb(110, 53, 19);
+}
+.hero h1 {
+  padding: 10px;
+}
+.natura_highlight {
+  text-transform: uppercase;
+  background: linear-gradient(to right, #449e41, #076e04, #25a820, #076e04);
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: zmienKolor 5s linear infinite;
+}
+
+.hero h2 {
+}
+/*animacje*/
+@keyframes zmienKolor {
+  to {
+    background-position: 200%;
+  }
 }
