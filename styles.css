@@ -8,22 +8,29 @@
   width: 100%;
   height: 130vh;
   background-image: url("/images/green-pine-trees-covered-with-fog.jpg");
+  background-size: cover;
+  background-position: center;
 }
+
 .navbar {
+  display: flex;
   justify-content: space-between; /* Rozdziela logo i linki */
   align-items: center; /* Wyrównuje elementy w pionie */
-  /* background-color: #a9d6e5; Tło paska */
-  padding: 10px 0px; /* Odstępy */
+  padding: 10px 20px; /* Odstępy */
   background-color: black;
 }
+
 .nav-links {
-  display: inline-flex;
-  margin: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
 }
+
 .nav-links li {
   list-style: none;
-  margin: 10px 60px;
+  margin: 10px 20px;
 }
+
 .nav-links li a {
   cursor: pointer;
   position: relative;
@@ -31,8 +38,9 @@
   color: white;
   font-size: 18px;
   padding: 5px;
-  transition: color 0.3 ease;
+  transition: color 0.3s ease;
 }
+
 .nav-links li a::before {
   content: "";
   position: absolute;
@@ -43,6 +51,7 @@
   background-color: #4b3b07;
   transition: all 0.5s;
 }
+
 .nav-links li a:hover:before {
   width: 100%;
 }
@@ -50,6 +59,7 @@
 .nav-links li a:hover {
   color: lightgreen;
 }
+
 .hero {
   font-size: 25px;
   height: 70vh; /* Wysokość na pełny ekran */
@@ -59,6 +69,7 @@
   flex-direction: column;
   color: rgb(110, 53, 19);
 }
+
 .natura_highlight {
   text-transform: uppercase;
   background: linear-gradient(to right, #449e41, #076e04, #25a820, #076e04);
@@ -72,9 +83,10 @@
 .hero h2 {
   padding-bottom: 2%;
 }
+
 .hero button {
-  width: 8%;
-  height: 10%;
+  width: 150px;
+  height: 50px;
   background: green;
   outline: none;
   font-size: 15px;
@@ -95,6 +107,7 @@
   position: relative;
   z-index: 2; /* Utrzymanie linku nad pseudoelementem */
 }
+
 .hero button::before {
   background-color: #4b3b07;
   position: absolute;
@@ -110,17 +123,34 @@
   transform-origin: left; /* Skalowanie rozpoczyna się od lewej krawędzi */
   transition: transform 0.4s ease-in-out; /* Płynna animacja */
 }
+
 .hero button:hover::before,
 .hero button:focus::before {
   transform: scaleX(1);
 }
+
 .hero button:hover {
   color: lightgreen;
 }
 
-/*animacje*/
+/* Animacje */
 @keyframes zmienKolor {
   to {
     background-position: 200%;
+  }
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+  .hero {
+    font-size: 20px;
+    text-align: center;
+  }
+  .container {
+    height: 100vh;
+  }
+  .hero button {
+    width: 120px;
+    height: 40px;
   }
 }
