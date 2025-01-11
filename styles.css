@@ -219,4 +219,7 @@
   .nav-links li:last-child {
     display: none;
   }
+  .hamburger_menu.is-active {
+    display: none;
+  }
 }
