@@ -45,7 +45,18 @@
         </div>
       </nav>
       <!--Hero section-->
-      <div class="hero"></div>
+      <div class="hero">
+        <h1>Rejestracja Użytkownika</h1>
+        <form action="http://localhost:5000/users" method="POST">
+          <label for="name">Imię:</label>
+          <input type="text" id="name" name="name" required /><br /><br />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required /><br /><br />
+
+          <button type="submit">Dodaj użytkownika</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
