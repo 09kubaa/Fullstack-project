@@ -30,8 +30,6 @@ def create_user():
         else:
             return jsonify({"error": "Unsupported Media Type"}), 415
 
-        app.logger.info(f"Received data: {data}")
-
         if not data.get('name') or not data.get('email') or not data.get('password'):
             return jsonify({"error": "Name, email, and password are required"}), 400
 
@@ -51,6 +49,24 @@ def create_user():
     except Exception as e:
         app.logger.error(f"Error: {e}", exc_info=True)  # Dodaj szczegółowe informacje o błędzie
         return jsonify({"error": "Internal server error"}), 500
+    
+@app.route('/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    try:
+        user = User.query.get(user_id)
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+        return jsonify(user.to_dict())
+    except Exception as e:
+        app.logger.error(f"Error fetching user with ID {user_id}: {e}")
+        return jsonify({"error": "Internal server error"}), 500
+
+@app.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    if not users:
+        return jsonify({"message": "No users found"}), 404
+    return jsonify([user.to_dict() for user in users])
     
 @app.errorhandler(404)
 def not_found_error(error):
