@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,render_template,redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -19,6 +19,21 @@ class User(db.Model):
 
 with app.app_context():
     db.create_all()
+
+@app.route('/index')
+def index():
+    return render_template('index.html')  # Wczytanie szablonu index.html
+
+# Formularz rejestracji
+@app.route('/formularz')
+def formularz():
+    return render_template('formularz.html')  # Wczytanie szablonu formularz.html
+
+# Panel użytkownika
+@app.route('/panel')
+def panel():
+    users = User.query.all()  # Pobierz użytkowników z bazy danych (przykład)
+    return render_template('panel.html', users=users)  # Wczytanie szablonu panel.html
     
 @app.route('/users', methods=['POST'])
 def create_user():
@@ -45,9 +60,11 @@ def create_user():
         )
         db.session.add(new_user)
         db.session.commit()
-        return jsonify(new_user.to_dict()), 201
+
+        # Przekierowanie na panel po utworzeniu użytkownika
+        return redirect(url_for('show_panel'))
     except Exception as e:
-        app.logger.error(f"Error: {e}", exc_info=True)  # Dodaj szczegółowe informacje o błędzie
+        app.logger.error(f"Error: {e}", exc_info=True)
         return jsonify({"error": "Internal server error"}), 500
     
 @app.route('/users/<int:user_id>', methods=['GET'])
