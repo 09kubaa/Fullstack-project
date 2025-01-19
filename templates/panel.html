@@ -46,20 +46,18 @@
       </nav>
       <!--Hero section-->
       <div class="hero">
-        <h1>Lista Użytkowników</h1>
+        <div class="h1-form">
+          <h2>Lista naszych dotychczasowych użytkowników</h2>
+        </div>
+        <div class="table_users">
         <table>
-          <tr>
-            <th>ID</th>
-            <th>Imię</th>
-            <th>Email</th>
-          </tr>
-          {% for user in users %}
-          <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-          </tr>
-          {% endfor %}
+
+            {% for user in users %}
+            <tr>
+              <td>{{ user.name }}</td>
+            </tr>
+            {% endfor %}
+          </div>
         </table>
       </div>
     </div>

@@ -8,9 +8,10 @@
 .container {
   width: 100%;
   height: 130vh;
-  background-image: url("/static/images/beautiful-view-trees-rain-forest-captured-foggy-weather.jpg");
+  background-image: url("/static/images/green-pine-trees-covered-with-fog.jpg");
   background-size: cover;
   background-position: center;
+  opacity: 100%;
 }
 
 .navbar {
@@ -51,7 +52,7 @@
   left: 0;
   width: 0%;
   height: 3px;
-  background-color: #4b3b07;
+  background-color: brown;
   transition: all 0.5s;
 }
 
@@ -67,7 +68,7 @@
   top: 0;
   left: 0;
   position: fixed;
-  height: 50vh;
+  height: 80%;
   width: 100vw;
   z-index: 1000;
   display: flex;
@@ -148,9 +149,9 @@ form {
   gap: 20px;
   align-items: center;
 }
-.form_row {
+.form-row {
   display: flex;
-  align-items: center;
+  align-items: left;
   gap: 10px;
   flex-direction: column;
 }
@@ -165,7 +166,7 @@ input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  text-align: right;
+  text-align: left;
 }
 
 .join-button {
@@ -231,6 +232,14 @@ input {
   align-self: center;
 }
 
+.table_users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+}
 /* Animacje */
 @keyframes zmienKolor {
   to {
@@ -240,9 +249,18 @@ input {
 
 /* Responsywność */
 @media (max-width: 768px) {
+  .hero_index {
+    font-size: 20px;
+    text-align: center;
+    align-items: center;
+  }
   .hero {
     font-size: 20px;
     text-align: center;
+    align-items: center;
+  }
+  .h1-form {
+    font-size: 20px;
   }
   .container {
     height: 100vh;

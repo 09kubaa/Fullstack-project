@@ -65,7 +65,7 @@ def create_user():
         db.session.commit()
 
         # Przekierowanie na panel po utworzeniu użytkownika
-        return redirect(url_for('show_panel'))
+        return redirect(url_for('panel'))
     except Exception as e:
         app.logger.error(f"Error: {e}", exc_info=True)
         return jsonify({"error": "Internal server error"}), 500
