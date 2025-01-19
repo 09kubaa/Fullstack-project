@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,render_template,redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -19,6 +19,21 @@ class User(db.Model):
 
 with app.app_context():
     db.create_all()
+
+@app.route('/index')
+def index():
+    return render_template('index.html')  # Wczytanie szablonu index.html
+
+# Formularz rejestracji
+@app.route('/formularz')
+def formularz():
+    return render_template('formularz.html')  # Wczytanie szablonu formularz.html
+
+# Panel użytkownika
+@app.route('/panel')
+def panel():
+    users = User.query.all()  # Pobierz użytkowników z bazy danych (przykład)
+    return render_template('panel.html', users=users)  # Wczytanie szablonu panel.html
     
 @app.route('/users', methods=['POST'])
 def create_user():
@@ -29,6 +44,8 @@ def create_user():
             data = request.form.to_dict()
         else:
             return jsonify({"error": "Unsupported Media Type"}), 415
+
+        app.logger.info(f"Received data: {data}")
 
         if not data.get('name') or not data.get('email') or not data.get('password'):
             return jsonify({"error": "Name, email, and password are required"}), 400
@@ -45,28 +62,12 @@ def create_user():
         )
         db.session.add(new_user)
         db.session.commit()
-        return jsonify(new_user.to_dict()), 201
-    except Exception as e:
-        app.logger.error(f"Error: {e}", exc_info=True)  # Dodaj szczegółowe informacje o błędzie
-        return jsonify({"error": "Internal server error"}), 500
-    
-@app.route('/users/<int:user_id>', methods=['GET'])
-def get_user(user_id):
-    try:
-        user = User.query.get(user_id)
-        if not user:
-            return jsonify({"error": "User not found"}), 404
-        return jsonify(user.to_dict())
-    except Exception as e:
-        app.logger.error(f"Error fetching user with ID {user_id}: {e}")
-        return jsonify({"error": "Internal server error"}), 500
 
-@app.route('/users', methods=['GET'])
-def get_users():
-    users = User.query.all()
-    if not users:
-        return jsonify({"message": "No users found"}), 404
-    return jsonify([user.to_dict() for user in users])
+        # Przekierowanie na panel po utworzeniu użytkownika
+        return redirect(url_for('show_panel'))
+    except Exception as e:
+        app.logger.error(f"Error: {e}", exc_info=True)
+        return jsonify({"error": "Internal server error"}), 500
     
 @app.errorhandler(404)
 def not_found_error(error):

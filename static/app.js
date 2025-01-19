@@ -11,7 +11,7 @@ form.addEventListener("submit", async (event) => {
   const data = Object.fromEntries(formData.entries());
 
   try {
-    const response = await fetch("http://localhost:5000/users", {
+    const response = await fetch("http://localhost:5500/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,30 +30,4 @@ form.addEventListener("submit", async (event) => {
     console.error("Błąd połączenia:", error);
     alert("Wystąpił problem z serwerem.");
   }
-});
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
-
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
-    const response = await fetch("/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    const result = await response.json();
-    if (response.ok) {
-      alert("Użytkownik dodany!");
-      window.location.reload();
-    } else {
-      alert(result.error);
-    }
-  });
 });
