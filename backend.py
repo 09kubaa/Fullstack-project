@@ -27,7 +27,8 @@ def index():
 # Formularz rejestracji
 @app.route('/formularz')
 def formularz():
-    return render_template('formularz.html')  # Wczytanie szablonu formularz.html
+    app.logger.info("Wywołano trasę /formularz")
+    return render_template('formularz.html')
 
 # Panel użytkownika
 @app.route('/panel')
@@ -78,4 +79,4 @@ def bad_request_error(error):
     return jsonify({"error": "Bad request"}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5500)
