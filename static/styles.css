@@ -124,7 +124,7 @@
   text-transform: uppercase;
   background: linear-gradient(to right, #449e41, #076e04, #25a820, #076e04);
   background-size: 200%;
-  background-clip: text;
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: zmienKolor 5s linear infinite;
@@ -151,7 +151,6 @@ form {
 }
 .form-row {
   display: flex;
-  align-items: left;
   gap: 10px;
   flex-direction: column;
 }
