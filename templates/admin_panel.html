@@ -47,12 +47,11 @@
         </div>
       </nav>
       <!--Hero section-->
-      <div class="hero_index">
-        <h1>Poznaj <span class="natura_highlight">naturę</span></h1>
-        <h2 class="h2-main">Kliknij i dołącz do naszego newslettera</h2>
-        <button class="join-button">
-          <a href="/formularz">Dołącz teraz</a>
-        </button>
+      <div class="hero">
+        <div class="h1-form"><h1>Witaj w panelu administratora</h1></div>
+        <form action="{{ url_for('admin_logout') }}" method="POST">
+          <button type="submit" class="logout-button">Wyloguj się</button>
+        </form>
       </div>
     </div>
   </body>

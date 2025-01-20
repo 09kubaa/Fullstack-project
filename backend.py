@@ -1,10 +1,11 @@
-from flask import Flask, request, jsonify,render_template,redirect, url_for
+from flask import Flask, request, jsonify,render_template,redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'supersecretkey'
 
 db = SQLAlchemy(app)
 
@@ -20,9 +21,78 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
+def admin_required(f):
+    def wrapper(*args, **kwargs):
+        if not session.get('admin_logged_in'):
+            return redirect(url_for('admin_login'))
+        return f(*args, **kwargs)
+    wrapper.__name__ = f.__name__
+    return wrapper
+
 @app.route('/index')
 def index():
     return render_template('index.html')  # Wczytanie szablonu index.html
+
+# Admin - login
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        app.logger.info(f"Username: {username}, Password: {password}")
+        # Prosta weryfikacja loginu i hasła
+        if username == 'admin' and password == 'admin':
+            session['admin_logged_in'] = True
+            return redirect(url_for('admin_panel'))
+        else:
+            return jsonify({"error": "Invalid credentials"}), 401
+
+    return render_template('admin_login.html')
+
+@app.route('/admin/logout', methods=['GET', 'POST'])
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    return redirect(url_for('admin_login'))
+
+
+#Admin - panel
+@app.route('/admin', methods=['GET'])
+@admin_required
+def admin_panel():
+    users = User.query.all()
+    return render_template('admin_panel.html', users=users)
+
+#Usuwanie
+@app.route('/admin/delete/<int:user_id>', methods=['POST'])
+@admin_required
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return redirect(url_for('admin_panel'))
+    return "User not found", 404
+
+#Edycja
+@app.route('/admin/edit/<int:user_id>', methods=['GET', 'POST'])
+@admin_required
+def edit_user(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        return "User not found", 404
+
+    if request.method == 'POST':
+        user.name = request.form.get('name', user.name)
+        user.email = request.form.get('email', user.email)
+        password = request.form.get('password')
+        if password:
+            user.password = generate_password_hash(password)
+        db.session.commit()
+        return redirect(url_for('admin_panel'))
+
+    return render_template('edit_user.html', user=user)
+
 
 # Formularz rejestracji
 @app.route('/formularz')
@@ -35,6 +105,7 @@ def formularz():
 def panel():
     users = User.query.all()  # Pobierz użytkowników z bazy danych (przykład)
     return render_template('panel.html', users=users)  # Wczytanie szablonu panel.html
+
     
 @app.route('/users', methods=['POST'])
 def create_user():
@@ -48,6 +119,7 @@ def create_user():
 
         app.logger.info(f"Received data: {data}")
 
+        # Weryfikacja wymaganych pól tylko przy rejestracji użytkownika
         if not data.get('name') or not data.get('email') or not data.get('password'):
             return jsonify({"error": "Name, email, and password are required"}), 400
 
@@ -64,7 +136,6 @@ def create_user():
         db.session.add(new_user)
         db.session.commit()
 
-        # Przekierowanie na panel po utworzeniu użytkownika
         return redirect(url_for('panel'))
     except Exception as e:
         app.logger.error(f"Error: {e}", exc_info=True)

@@ -229,6 +229,43 @@ input {
   cursor: pointer;
   box-shadow: 0 0 5px rgb(0, 0, 0);
   align-self: center;
+  overflow: hidden;
+}
+
+.submit-button span {
+  position: relative;
+  z-index: 2; /* Utrzymanie tekstu nad animacją */
+}
+.submit-button a {
+  text-decoration: none;
+  color: white;
+  position: relative;
+  z-index: 2; /* Utrzymanie linku nad pseudoelementem */
+}
+
+.submit-button::before {
+  background-color: brown;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  transform: scaleX(
+    0
+  ); /* Początkowo pseudoelement jest skalowany na 0 w osi X */
+  transform-origin: left; /* Skalowanie rozpoczyna się od lewej krawędzi */
+  transition: transform 0.4s ease-in-out; /* Płynna animacja */
+}
+
+.submit-button:hover::before,
+.submit-button:focus::before {
+  transform: scaleX(1);
+}
+
+.submit-button:hover {
+  color: white;
 }
 
 .table_users {

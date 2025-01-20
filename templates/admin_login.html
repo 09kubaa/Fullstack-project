@@ -47,12 +47,24 @@
         </div>
       </nav>
       <!--Hero section-->
-      <div class="hero_index">
-        <h1>Poznaj <span class="natura_highlight">naturę</span></h1>
-        <h2 class="h2-main">Kliknij i dołącz do naszego newslettera</h2>
-        <button class="join-button">
-          <a href="/formularz">Dołącz teraz</a>
-        </button>
+      <div class="hero">
+        <div class="h1-form"><h1>Logowanie administratora</h1></div>
+
+        <form action="/admin/login" method="POST">
+          <div class="form-row">
+            <label for="username">Login:</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+
+          <div class="form-row">
+            <label for="password">Hasło:</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+
+          <button class="submit-button" type="submit">
+            <span>Zaloguj się</span>
+          </button>
+        </form>
       </div>
     </div>
   </body>
