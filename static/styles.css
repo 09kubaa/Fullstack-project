@@ -119,6 +119,14 @@
   flex-direction: column;
   color: rgb(110, 53, 19);
 }
+.hero {
+  font-size: 25px;
+  height: 70vh; /* Wysokość na pełny ekran */
+  display: flex;
+  align-items: center; /* Wyrównanie zawartości w pionie */
+  flex-direction: column;
+  padding-top: 0%;
+}
 
 .natura_highlight {
   text-transform: uppercase;
@@ -158,6 +166,7 @@ label {
   font-size: 16px;
   font-weight: 600;
   width: 100%; /* Minimalna szerokość etykiety */
+  color: black;
 }
 
 input {
@@ -276,6 +285,27 @@ input {
   font-weight: 500;
   color: rgb(0, 0, 0);
 }
+table {
+  width: 100%;
+  border-collapse: collapse; /* Zapobiega podwójnym granicom między komórkami */
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 12px 20px; /* Większe odstępy w poziomie i pionie */
+  text-align: left; /* Wyrównanie tekstu do lewej */
+  border: 1px solid #ddd; /* Delikatna ramka wokół komórek */
+}
+
+th {
+  background-color: #ffffff; /* Kolor tła nagłówków */
+  font-weight: bold;
+}
+tr {
+  background-color: #f0eeee;
+}
+
 /* Animacje */
 @keyframes zmienKolor {
   to {

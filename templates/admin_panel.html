@@ -49,8 +49,41 @@
       <!--Hero section-->
       <div class="hero">
         <div class="h1-form"><h1>Witaj w panelu administratora</h1></div>
+        <div class="users_admin">
+            <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Imię</th>
+                    <th>Email</th>
+                    <th>Akcje</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for user in users %}
+                  <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                      <!-- Przycisk Edytuj -->
+                      <a href="{{ url_for('edit_user', user_id=user.id) }}">
+                        <button>Edytuj</button>
+                      </a>
+              
+                      <!-- Przycisk Usuń -->
+                      <form action="{{ url_for('delete_user', user_id=user.id) }}" method="POST" style="display: inline-block;">
+                        <button type="submit" onclick="return confirm('Czy na pewno chcesz usunąć tego użytkownika?')">Usuń</button>
+                      </form>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
         <form action="{{ url_for('admin_logout') }}" method="POST">
-          <button type="submit" class="logout-button">Wyloguj się</button>
+          <button class="submit-button" type="submit">
+            <span>Wyloguj się</span>
+          </button>
         </form>
       </div>
     </div>
