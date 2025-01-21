@@ -46,7 +46,7 @@ def admin_login():
             session['admin_logged_in'] = True
             return redirect(url_for('admin_panel'))
         else:
-            return jsonify({"error": "Invalid credentials"}), 401
+            return render_template('admin_login.html', error='Niepoprawne dane logowania')
 
     return render_template('admin_login.html')
 

@@ -65,6 +65,10 @@
             <span>Zaloguj się</span>
           </button>
         </form>
+        {% if error %}
+        <div class="error-style"><p>{{ error }}</p></div>
+
+        {% endif %}
       </div>
     </div>
   </body>
