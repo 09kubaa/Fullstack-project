@@ -53,12 +53,25 @@
         <form action="http://localhost:5500/users" method="POST">
           <div class="form-row">
             <label for="name">Nazwa użytkownika:</label>
-            <input type="text" id="name" name="name" required />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              minlength="2"
+              maxlength="80"
+            />
           </div>
 
           <div class="form-row">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              minlength="6"
+            />
           </div>
 
           <div class="form-row">
@@ -66,9 +79,23 @@
             <input type="password" id="password" name="password" required />
           </div>
 
+          <div class="form-row">
+            <label for="confirm_password">Potwierdź hasło:</label>
+            <input
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              required
+            />
+          </div>
           <button class="submit-button" type="submit">
             <span>Dodaj użytkownika</span>
           </button>
+          {% if error %}
+        <div class="error-style"><p>{{ error }}</p></div>
+
+        {% endif %}
+      </div>
         </form>
       </div>
     </div>

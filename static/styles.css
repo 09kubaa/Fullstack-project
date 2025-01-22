@@ -313,6 +313,23 @@ tr {
   background-color: #fff7de;
   margin-top: 10px;
 }
+.footer_style {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  width: 100%;
+  opacity: 0; /* Ukryta na start */
+  transform: translateY(100%); /* Poza widocznością */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.footer_style.visible {
+  opacity: 1; /* Widoczna */
+  transform: translateY(0); /* Na właściwej pozycji */
+  display: block;
+}
 /* Animacje */
 @keyframes zmienKolor {
   to {

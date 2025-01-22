@@ -31,3 +31,17 @@ form.addEventListener("submit", async (event) => {
     alert("Wystąpił problem z serwerem.");
   }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .querySelector("form[action='users']")
+    .addEventListener("submit", function (e) {
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm_password").value;
+
+      if (password !== confirmPassword) {
+        e.preventDefault();
+        alert("Passwords do not match!");
+      }
+    });
+});

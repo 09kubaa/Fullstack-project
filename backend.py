@@ -83,11 +83,33 @@ def edit_user(user_id):
         return "User not found", 404
 
     if request.method == 'POST':
-        user.name = request.form.get('name', user.name)
-        user.email = request.form.get('email', user.email)
-        password = request.form.get('password')
-        if password:
-            user.password = generate_password_hash(password)
+        new_name = request.form.get('name', user.name)
+        new_email = request.form.get('email', user.email)
+        new_password = request.form.get('password')
+
+        # Sprawdź, czy email już istnieje w bazie danych i nie należy do tego samego użytkownika
+        existing_email_user = User.query.filter(User.email == new_email, User.id != user_id).first()
+        if existing_email_user:
+            return render_template(
+                'edit_user.html',
+                user=user,
+                error="Adres email już istnieje"
+            )
+
+        # Sprawdź, czy nazwa użytkownika już istnieje w bazie danych i nie należy do tego samego użytkownika
+        existing_name_user = User.query.filter(User.name == new_name, User.id != user_id).first()
+        if existing_name_user:
+            return render_template(
+                'edit_user.html',
+                user=user,
+                error="Nazwa użytkownika już istnieje"
+            )
+
+        # Aktualizuj dane użytkownika
+        user.name = new_name
+        user.email = new_email
+        if new_password:
+            user.password = generate_password_hash(new_password)
         db.session.commit()
         return redirect(url_for('admin_panel'))
 
@@ -119,13 +141,18 @@ def create_user():
 
         app.logger.info(f"Received data: {data}")
 
-        # Weryfikacja wymaganych pól tylko przy rejestracji użytkownika
-        if not data.get('name') or not data.get('email') or not data.get('password'):
-            return jsonify({"error": "Name, email, and password are required"}), 400
+        # Weryfikacja wymaganych pól
+        if not data.get('name') or not data.get('email') or not data.get('password') or not data.get('confirm_password'):
+            return render_template('formularz.html', error="Wypełnij wszystkie pola")
+        if data['password'] != data['confirm_password']:
+            return render_template('formularz.html', error="Hasła się nie zgadzają")
 
         if User.query.filter_by(email=data['email']).first():
-            return jsonify({"error": "Email already exists"}), 400
-
+            return render_template('formularz.html', error="Podany adres email jest już zajęty")
+        
+        if User.query.filter_by(name=data['name']).first():
+            return render_template('formularz.html', error="Podana nazwa użytkownika jest już zajęta")
+        
         hashed_password = generate_password_hash(data['password'])
 
         new_user = User(
@@ -137,6 +164,9 @@ def create_user():
         db.session.commit()
 
         return redirect(url_for('panel'))
+    except Exception as e:
+        app.logger.error(f"Error: {e}", exc_info=True)
+        return jsonify({"error": "Internal server error"}), 500
     except Exception as e:
         app.logger.error(f"Error: {e}", exc_info=True)
         return jsonify({"error": "Internal server error"}), 500

@@ -47,16 +47,59 @@
         </div>
       </nav>
       <!--Hero section-->
-      <div class="hero_index">
-        <h1>Poznaj <span class="natura_highlight">naturę</span></h1>
-        <h2 class="h2-main">Kliknij i dołącz do naszego newslettera</h2>
-        <button class="join-button">
-          <a href="/formularz">Dołącz teraz</a>
-        </button>
+      <div class="hero">
+        <div class="h1-form"><h1>Edycja użytkownika: {{user.name}}</h1></div>
+
+        <form action="{{ url_for('edit_user', user_id=user.id) }}" method="POST">
+          <div class="form-row">
+            <label for="name">Nazwa użytkownika:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              minlength="2"
+              maxlength="80"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              minlength="6"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="password">Hasło:</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+
+          <div class="form-row">
+            <label for="confirm_password">Potwierdź hasło:</label>
+            <input
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              required
+            />
+          </div>
+          <button class="submit-button" type="submit">
+            <span>Zapisz zmiany</span>
+          </button>
+          
+          <button class="submit-button"><a href="{{ url_for('admin_panel') }}">Anuluj</a></button>
+          {% if error %}
+        <div class="error-style"><p>{{ error }}</p></div>
+
+        {% endif %}
       </div>
-      <footer class="footer_style">
-        <p>Wszelkie prawa zastrzeżone &copy; 2021</p>
-      </footer>
+        </form>
+      </div>
     </div>
   </body>
 </html>
