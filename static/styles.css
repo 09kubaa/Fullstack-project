@@ -5,13 +5,22 @@
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+html {
+  height: 100%;
+}
 .container {
   width: 100%;
-  height: 130vh;
+  min-height: 130vh;
   background-image: url("/static/images/green-pine-trees-covered-with-fog.jpg");
   background-size: cover;
   background-position: center;
   opacity: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar {
@@ -315,20 +324,28 @@ tr {
 }
 .footer_style {
   background-color: black;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-  font-size: 14px;
   width: 100%;
-  opacity: 0; /* Ukryta na start */
-  transform: translateY(100%); /* Poza widocznością */
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  height: 50px;
+  margin-top: auto;
+  opacity: 1;
+  z-index: 1;
+  display: flex; /* Ustawia flexbox dla całej stopki */
+  align-items: center; /* Centruje zawartość w pionie */
+  justify-content: center; /* Centruje zawartość w poziomie */
 }
 
-.footer_style.visible {
-  opacity: 1; /* Widoczna */
-  transform: translateY(0); /* Na właściwej pozycji */
-  display: block;
+.footer_item {
+  color: white;
+  z-index: 2;
+  display: inline-block;
+  margin: 50px;
+}
+.footer_item a {
+  color: white;
+  text-decoration: none;
+}
+.footer_item a:hover {
+  color: green;
 }
 /* Animacje */
 @keyframes zmienKolor {

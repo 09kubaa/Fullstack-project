@@ -52,16 +52,35 @@
           <h2>Lista naszych dotychczasowych użytkowników</h2>
         </div>
         <div class="table_users">
-        <table>
-
-            {% for user in users %}
-            <tr>
-              <td>{{ user.name }}</td>
-            </tr>
-            {% endfor %}
-          </div>
-        </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Nazwa użytkownika</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+              <tr>
+                <td>{{ user.name }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
+      <footer class="footer_style">
+        <div class="footer_item">
+          <p>Wszelkie prawa zastrzeżone &copy; 2024</p>
+        </div>
+        <div class="footer_item">
+          <a href="https://validator.w3.org/#validate_by_upload"
+            >Walidator HTML</a
+          >
+        </div>
+        <div class="footer_item">
+          <a href="https://jigsaw.w3.org/css-validator/">Walidator CSS</a>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
