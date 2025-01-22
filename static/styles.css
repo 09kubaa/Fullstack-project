@@ -388,6 +388,10 @@ tr {
   .nav-links li:last-child {
     display: flex;
   }
+  .footer_item {
+    margin: 10px;
+    font-size: 11px;
+  }
 }
 @media (min-width: 769px) {
   .nav-links li:last-child {
