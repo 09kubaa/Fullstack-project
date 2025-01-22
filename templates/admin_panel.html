@@ -60,7 +60,11 @@
               </tr>
             </thead>
             <tbody>
-              {% for user in users %}
+              {% if not users %}
+              <tr>
+                <td colspan="4">Brak użytkowników do wyświetlenia.</td>
+              </tr>
+              {% else %} {% for user in users %}
               <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.name }}</td>
@@ -86,7 +90,7 @@
                   </form>
                 </td>
               </tr>
-              {% endfor %}
+              {% endfor %} {% endif %}
             </tbody>
           </table>
           <form action="{{ url_for('admin_logout') }}" method="POST">

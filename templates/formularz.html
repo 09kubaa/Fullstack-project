@@ -92,7 +92,12 @@
             <span>Dodaj użytkownika</span>
           </button>
         </form>
+        {% if error %}
+        <div class="error-style"><p>{{ error }}</p></div>
+
+        {% endif %}
       </div>
+
       <footer class="footer_style">
         <div class="footer_item">
           <p>Wszelkie prawa zastrzeżone &copy; 2024</p>

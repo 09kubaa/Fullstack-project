@@ -59,7 +59,11 @@
               </tr>
             </thead>
             <tbody>
-              {% for user in users %}
+              {% if not users %}
+              <tr>
+                <td colspan="4">Brak użytkowników do wyświetlenia.</td>
+              </tr>
+              {% endif %} {% for user in users %}
               <tr>
                 <td>{{ user.name }}</td>
               </tr>
