@@ -128,6 +128,9 @@ def panel():
     users = User.query.all()  # Pobierz użytkowników z bazy danych (przykład)
     return render_template('panel.html', users=users)  # Wczytanie szablonu panel.html
 
+@app.route('/galeria')
+def galeria():
+    return render_template('galeria.html')  # Wczytanie szablonu panel.html
     
 @app.route('/users', methods=['POST'])
 def create_user():

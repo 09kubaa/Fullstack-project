@@ -34,6 +34,7 @@
             <li><a href="/admin">Panel administratora</a></li>
             <li><a href="/galeria">Galeria</a></li>
           </ul>
+
           <ul class="nav-links">
             <li><a href="/index">Menu główne</a></li>
             <li><a href="/formularz">Rejestracja</a></li>
@@ -49,29 +50,7 @@
         </div>
       </nav>
       <!--Hero section-->
-      <div class="hero">
-        <div class="h1-form"><h1>Logowanie administratora</h1></div>
 
-        <form action="/admin/login" method="POST">
-          <div class="form-row">
-            <label for="username">Login:</label>
-            <input type="text" id="username" name="username" required />
-          </div>
-
-          <div class="form-row">
-            <label for="password">Hasło:</label>
-            <input type="password" id="password" name="password" required />
-          </div>
-
-          <button class="submit-button" type="submit">
-            <span>Zaloguj się</span>
-          </button>
-        </form>
-        {% if error %}
-        <div class="error-style"><p>{{ error }}</p></div>
-
-        {% endif %}
-      </div>
       <footer class="footer_style">
         <div class="footer_item">
           <p>Wszelkie prawa zastrzeżone &copy; 2024</p>
