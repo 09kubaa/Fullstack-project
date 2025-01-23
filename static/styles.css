@@ -311,7 +311,7 @@ table {
   width: 100%;
   font-size: 20px;
   border-collapse: collapse; /* Zapobiega podwójnym granicom między komórkami */
-  min-width: 300px;
+  min-width: 400px;
 }
 .users_admin {
   max-height: 80vh; /* Maksymalna wysokość tabeli */
@@ -352,7 +352,7 @@ tr {
 }
 th:first-child,
 td:first-child {
-  width: 13%; /* Określ procentową szerokość */
+  width: 20%; /* Określ procentową szerokość */
   min-width: 50px; /* Zapewnij minimalną szerokość */
 }
 .users_admin table td.seperate_td {
@@ -364,6 +364,10 @@ td:first-child {
   color: #333;
   white-space: normal;
   display: table-cell; /* Upewnia się, że zachowuje się jak standardowa komórka */
+}
+.table_users table td.seperate_td {
+  text-align: center;
+  justify-content: center;
 }
 
 .error-style {
@@ -459,7 +463,6 @@ td:first-child {
   }
 
   .users_admin table td:last-child {
-    display: flex;
     flex-direction: column; /* Przycisk Edytuj i Usuń w jednej kolumnie */
     gap: 5px;
   }
