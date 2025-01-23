@@ -12,6 +12,9 @@ body {
 html {
   height: 100%;
 }
+a {
+  text-decoration: none;
+}
 .container {
   width: 100%;
   min-height: 130vh;
@@ -171,6 +174,9 @@ form {
   gap: 10px;
   flex-direction: column;
 }
+.form-row:last-child {
+  margin-bottom: 0;
+}
 label {
   font-size: 16px;
   font-weight: 600;
@@ -235,6 +241,7 @@ input {
   color: lightgreen;
 }
 .submit-button {
+  margin-top: 20px;
   width: 150px;
   height: 50px;
   font-weight: 600;
@@ -294,10 +301,33 @@ input {
   font-weight: 500;
   color: rgb(0, 0, 0);
 }
+.table_users tbody {
+  display: block;
+  max-height: 400px; /* Dostosuj do potrzebnej wysokości */
+  overflow-y: auto;
+  width: 100%;
+}
 table {
   width: 100%;
+  font-size: 20px;
   border-collapse: collapse; /* Zapobiega podwójnym granicom między komórkami */
-  margin-bottom: 20px;
+  min-width: 300px;
+}
+.users_admin {
+  max-height: 80vh; /* Maksymalna wysokość tabeli */
+  overflow-y: auto; /* Przewijanie w pionie */
+  border: 1px solid #ddd;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.table_button {
+  width: 15vh; /* Przycisk zajmuje całą szerokość na małych ekranach */
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 th,
@@ -305,14 +335,35 @@ td {
   padding: 12px 20px; /* Większe odstępy w poziomie i pionie */
   text-align: left; /* Wyrównanie tekstu do lewej */
   border: 1px solid #ddd; /* Delikatna ramka wokół komórek */
+  word-wrap: break-word; /* Przełamuje długie słowa */
+  word-break: break-word; /* Dodatkowa obsługa przełamywania w starszych przeglądarkach */
+  overflow-wrap: anywhere; /* Przełamuje tekst w dowolnym miejscu */
+  max-width: 200px;
 }
 
 th {
   background-color: #ffffff; /* Kolor tła nagłówków */
   font-weight: bold;
+  min-width: 100%;
+  text-align: center;
 }
 tr {
   background-color: #f0eeee;
+}
+th:first-child,
+td:first-child {
+  width: 13%; /* Określ procentową szerokość */
+  min-width: 50px; /* Zapewnij minimalną szerokość */
+}
+.users_admin table td.seperate_td {
+  text-align: center;
+  width: 100%; /* Zajmuje całą szerokość dostępnej przestrzeni */
+  font-size: 16px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  color: #333;
+  white-space: normal;
+  display: table-cell; /* Upewnia się, że zachowuje się jak standardowa komórka */
 }
 
 .error-style {
@@ -355,6 +406,16 @@ tr {
 }
 
 /* Responsywność */
+@media (max-width: 1024px) {
+  .h1-form {
+    text-align: center;
+    align-items: center;
+  }
+  .footer_item {
+    margin: 10px;
+    font-size: 11px;
+  }
+}
 @media (max-width: 768px) {
   .hero_index {
     font-size: 20px;
@@ -391,6 +452,22 @@ tr {
   .footer_item {
     margin: 10px;
     font-size: 11px;
+  }
+
+  .users_admin table th {
+    font-size: 12px; /* Zmniejsza rozmiar tekstu na mniejszych ekranach */
+  }
+
+  .users_admin table td:last-child {
+    display: flex;
+    flex-direction: column; /* Przycisk Edytuj i Usuń w jednej kolumnie */
+    gap: 5px;
+  }
+
+  .table_button {
+    max-height: 20px;
+    max-width: 50px; /* Przycisk zajmuje całą szerokość na małych ekranach */
+    font-size: 12px;
   }
 }
 @media (min-width: 769px) {

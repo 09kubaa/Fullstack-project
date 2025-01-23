@@ -61,9 +61,11 @@
             </thead>
             <tbody>
               {% if not users %}
-              <tr>
-                <td colspan="4">Brak użytkowników do wyświetlenia.</td>
-              </tr>
+
+              <td colspan="4" class="seperate_td">
+                Brak użytkowników do wyświetlenia.
+              </td>
+
               {% else %} {% for user in users %}
               <tr>
                 <td>{{ user.id }}</td>
@@ -72,7 +74,7 @@
                 <td>
                   <!-- Przycisk Edytuj -->
                   <a href="{{ url_for('edit_user', user_id=user.id) }}">
-                    <button>Edytuj</button>
+                    <button class="table_button">Edytuj</button>
                   </a>
 
                   <!-- Przycisk Usuń -->
@@ -82,6 +84,7 @@
                     style="display: inline-block"
                   >
                     <button
+                      class="table_button"
                       type="submit"
                       onclick="return confirm('Czy na pewno chcesz usunąć tego użytkownika?')"
                     >
@@ -93,12 +96,12 @@
               {% endfor %} {% endif %}
             </tbody>
           </table>
-          <form action="{{ url_for('admin_logout') }}" method="POST">
-            <button class="submit-button" type="submit">
-              <span>Wyloguj się</span>
-            </button>
-          </form>
         </div>
+        <form action="{{ url_for('admin_logout') }}" method="POST">
+          <button class="submit-button" type="submit">
+            <span>Wyloguj się</span>
+          </button>
+        </form>
       </div>
       <!-- Zamknięcie sekcji hero -->
       <footer class="footer_style">
