@@ -167,9 +167,6 @@ def create_user():
     except Exception as e:
         app.logger.error(f"Error: {e}", exc_info=True)
         return jsonify({"error": "Internal server error"}), 500
-    except Exception as e:
-        app.logger.error(f"Error: {e}", exc_info=True)
-        return jsonify({"error": "Internal server error"}), 500
     
 @app.errorhandler(404)
 def not_found_error(error):
