@@ -80,7 +80,7 @@ a {
   top: 0;
   left: 0;
   position: fixed;
-  height: 70%;
+  height: 80%;
   width: 100vw;
   z-index: 1000;
   display: flex;
