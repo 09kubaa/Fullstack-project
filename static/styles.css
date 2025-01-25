@@ -28,9 +28,9 @@ a {
 
 .navbar {
   display: flex;
-  justify-content: space-between; /* Rozdziela logo i linki */
-  align-items: center; /* Wyrównuje elementy w pionie */
-  padding: 10px 20px; /* Odstępy */
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
   background-color: black;
   height: 12vh;
 }
@@ -139,6 +139,51 @@ a {
   flex-direction: column;
   padding-top: 0%;
 }
+.slider-wrapper {
+  position: relative;
+  max-width: 70rem;
+  margin: 0 auto;
+  margin-top: 5vh;
+  border: 30px solid #000;
+  border-radius: 30px;
+  overflow: hidden;
+}
+.slider {
+  display: flex;
+  aspect-ratio: 16/9;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+  border-radius: 0.5rem;
+  scrollbar-width: none; /* Firefox */
+}
+
+.slider img {
+  flex: 1 0 100%;
+  scroll-snap-align: start;
+  object-fit: cover;
+}
+.slider-nav {
+  display: flex;
+  column-gap: 1rem;
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.slider-nav a {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.75;
+  transition: opacity ease 250ms;
+}
+.slider-nav a:hover {
+  opacity: 1;
+}
 
 .natura_highlight {
   text-transform: uppercase;
@@ -163,6 +208,7 @@ a {
   color: rgb(110, 53, 19);
   font-size: 27px;
 }
+
 form {
   display: flex;
   flex-direction: column;
@@ -335,8 +381,6 @@ td {
   padding: 12px 20px; /* Większe odstępy w poziomie i pionie */
   text-align: left; /* Wyrównanie tekstu do lewej */
   border: 1px solid #ddd; /* Delikatna ramka wokół komórek */
-  word-wrap: break-word; /* Przełamuje długie słowa */
-  word-break: break-word; /* Dodatkowa obsługa przełamywania w starszych przeglądarkach */
   overflow-wrap: anywhere; /* Przełamuje tekst w dowolnym miejscu */
   max-width: 200px;
 }
@@ -436,6 +480,14 @@ td:first-child {
   }
   .container {
     height: 100vh;
+  }
+  .slider-wrapper {
+    border: 20px solid #000;
+    max-width: 90%; /* Dopasowanie szerokości do mniejszych ekranów */
+  }
+
+  .slider {
+    aspect-ratio: 4/3; /* Zmiana proporcji na bardziej pionowe */
   }
   .hero button {
     width: 120px;
