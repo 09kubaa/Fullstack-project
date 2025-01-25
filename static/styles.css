@@ -124,18 +124,18 @@ a {
 
 .hero_index {
   font-size: 25px;
-  height: 70vh; /* Wysokość na pełny ekran */
+  height: 70vh;
   display: flex;
-  align-items: center; /* Wyrównanie zawartości w pionie */
+  align-items: center;
   justify-content: center;
   flex-direction: column;
   color: rgb(110, 53, 19);
 }
 .hero {
   font-size: 25px;
-  height: 70vh; /* Wysokość na pełny ekran */
+  height: 70vh;
   display: flex;
-  align-items: center; /* Wyrównanie zawartości w pionie */
+  align-items: center;
   flex-direction: column;
   padding-top: 0%;
 }
@@ -156,7 +156,7 @@ a {
   scroll-behavior: smooth;
   box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
   border-radius: 0.5rem;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
 .slider img {
@@ -226,7 +226,7 @@ form {
 label {
   font-size: 16px;
   font-weight: 600;
-  width: 100%; /* Minimalna szerokość etykiety */
+  width: 100%;
   color: black;
 }
 
@@ -251,15 +251,15 @@ input {
   border: none;
   cursor: pointer;
   box-shadow: 0 0 5px rgb(0, 0, 0);
-  overflow: hidden; /* Zapobiega wychodzeniu pseudoelementu poza przycisk */
-  z-index: 0; /* Pozycjonowanie przycisku nad pseudoelementem */
+  overflow: hidden;
+  z-index: 0;
 }
 
 .join-button a {
   text-decoration: none;
   color: #f0efeb;
   position: relative;
-  z-index: 2; /* Utrzymanie linku nad pseudoelementem */
+  z-index: 2;
 }
 
 .join-button::before {
@@ -271,11 +271,9 @@ input {
   width: 100%;
   height: 100%;
   content: "";
-  transform: scaleX(
-    0
-  ); /* Początkowo pseudoelement jest skalowany na 0 w osi X */
-  transform-origin: left; /* Skalowanie rozpoczyna się od lewej krawędzi */
-  transition: transform 0.4s ease-in-out; /* Płynna animacja */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease-in-out;
 }
 
 .join-button:hover::before,
@@ -305,13 +303,13 @@ input {
 
 .submit-button span {
   position: relative;
-  z-index: 2; /* Utrzymanie tekstu nad animacją */
+  z-index: 2;
 }
 .submit-button a {
   text-decoration: none;
   color: white;
   position: relative;
-  z-index: 2; /* Utrzymanie linku nad pseudoelementem */
+  z-index: 2;
 }
 
 .submit-button::before {
@@ -323,11 +321,9 @@ input {
   width: 100%;
   height: 100%;
   content: "";
-  transform: scaleX(
-    0
-  ); /* Początkowo pseudoelement jest skalowany na 0 w osi X */
-  transform-origin: left; /* Skalowanie rozpoczyna się od lewej krawędzi */
-  transition: transform 0.4s ease-in-out; /* Płynna animacja */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease-in-out;
 }
 
 .submit-button:hover::before,
@@ -349,26 +345,26 @@ input {
 }
 .table_users tbody {
   display: block;
-  max-height: 400px; /* Dostosuj do potrzebnej wysokości */
+  max-height: 400px;
   overflow-y: auto;
   width: 100%;
 }
 table {
   width: 100%;
   font-size: 20px;
-  border-collapse: collapse; /* Zapobiega podwójnym granicom między komórkami */
+  border-collapse: collapse;
   min-width: 400px;
 }
 .users_admin {
-  max-height: 80vh; /* Maksymalna wysokość tabeli */
-  overflow-y: auto; /* Przewijanie w pionie */
+  max-height: 80vh;
+  overflow-y: auto;
   border: 1px solid #ddd;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 .table_button {
-  width: 15vh; /* Przycisk zajmuje całą szerokość na małych ekranach */
+  width: 15vh;
   font-size: 15px;
   display: flex;
   justify-content: center;
@@ -378,15 +374,15 @@ table {
 
 th,
 td {
-  padding: 12px 20px; /* Większe odstępy w poziomie i pionie */
-  text-align: left; /* Wyrównanie tekstu do lewej */
-  border: 1px solid #ddd; /* Delikatna ramka wokół komórek */
-  overflow-wrap: anywhere; /* Przełamuje tekst w dowolnym miejscu */
+  padding: 12px 20px;
+  text-align: left;
+  border: 1px solid #ddd;
+  overflow-wrap: anywhere;
   max-width: 200px;
 }
 
 th {
-  background-color: #ffffff; /* Kolor tła nagłówków */
+  background-color: #ffffff;
   font-weight: bold;
   min-width: 100%;
   text-align: center;
@@ -396,18 +392,18 @@ tr {
 }
 th:first-child,
 td:first-child {
-  width: 20%; /* Określ procentową szerokość */
-  min-width: 50px; /* Zapewnij minimalną szerokość */
+  width: 20%;
+  min-width: 50px;
 }
 .users_admin table td.seperate_td {
   text-align: center;
-  width: 100%; /* Zajmuje całą szerokość dostępnej przestrzeni */
+  width: 100%;
   font-size: 16px;
   padding: 10px;
   background-color: #f9f9f9;
   color: #333;
   white-space: normal;
-  display: table-cell; /* Upewnia się, że zachowuje się jak standardowa komórka */
+  display: table-cell;
 }
 .table_users table td.seperate_td {
   text-align: center;
@@ -428,9 +424,9 @@ td:first-child {
   margin-top: auto;
   opacity: 1;
   z-index: 1;
-  display: flex; /* Ustawia flexbox dla całej stopki */
-  align-items: center; /* Centruje zawartość w pionie */
-  justify-content: center; /* Centruje zawartość w poziomie */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer_item {
@@ -483,11 +479,11 @@ td:first-child {
   }
   .slider-wrapper {
     border: 20px solid #000;
-    max-width: 90%; /* Dopasowanie szerokości do mniejszych ekranów */
+    max-width: 90%;
   }
 
   .slider {
-    aspect-ratio: 4/3; /* Zmiana proporcji na bardziej pionowe */
+    aspect-ratio: 4/3;
   }
   .hero button {
     width: 120px;
@@ -511,17 +507,17 @@ td:first-child {
   }
 
   .users_admin table th {
-    font-size: 12px; /* Zmniejsza rozmiar tekstu na mniejszych ekranach */
+    font-size: 12px;
   }
 
   .users_admin table td:last-child {
-    flex-direction: column; /* Przycisk Edytuj i Usuń w jednej kolumnie */
+    flex-direction: column;
     gap: 5px;
   }
 
   .table_button {
     max-height: 20px;
-    max-width: 50px; /* Przycisk zajmuje całą szerokość na małych ekranach */
+    max-width: 50px;
     font-size: 12px;
   }
 }
