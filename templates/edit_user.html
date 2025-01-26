@@ -52,7 +52,10 @@
       <div class="hero">
         <div class="h1-form"><h1>Edycja użytkownika: {{user.name}}</h1></div>
 
-        <form action="{{ url_for('edit_user', user_id=user.id) }}" method="POST">
+        <form
+          action="{{ url_for('edit_user', user_id=user.id) }}"
+          method="POST"
+        >
           <div class="form-row">
             <label for="name">Nazwa użytkownika:</label>
             <input
@@ -93,13 +96,14 @@
           <button class="submit-button" type="submit">
             <span>Zapisz zmiany</span>
           </button>
-          
-          <button class="submit-button"><a href="{{ url_for('admin_panel') }}">Anuluj</a></button>
-          {% if error %}
-        <div class="error-style"><p>{{ error }}</p></div>
 
-        {% endif %}
-      </div>
+          <button class="submit-button">
+            <a href="{{ url_for('admin_panel') }}">Anuluj</a>
+          </button>
+          {% if error %}
+          <div class="error-style"><p>{{ error }}</p></div>
+
+          {% endif %}
         </form>
       </div>
       <footer class="footer_style">
