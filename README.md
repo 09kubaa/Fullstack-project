@@ -19,11 +19,10 @@ Technologie:
 
 Struktura katalogu:
 Fullstack-project/
-├── backend.py          # Główny plik backendu Flask
-├── instance/users.db   # Lokalna baza danych SQLite
-├── static/             # Statyczne pliki frontendowe (JS, CSS, obrazy)
-├── templates/          # Szablony HTML
-└── .venv/              # (opcjonalnie) Środowisko wirtualne Pythona
+backend.py          # Główny plik backendu Flask
+instance/users.db   # Lokalna baza danych SQLite
+static/             # Statyczne pliki frontendowe (JS, CSS, obrazy)
+templates/          # Szablony HTML
 
 Wymagania:
 Zainstaluj wymagane biblioteki:
